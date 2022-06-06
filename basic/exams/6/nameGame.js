@@ -1,0 +1,4 @@
+function nameGame(input) {
+    
+}
+nameGame

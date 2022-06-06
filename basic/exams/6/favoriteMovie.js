@@ -1,0 +1,4 @@
+function favoriteMovie(input) {
+    
+}
+favoriteMovie
