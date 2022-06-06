@@ -5,7 +5,7 @@ function rotateArray(arr) {
     arr.pop()
    while(rotation > 0){
     let current = arr.pop()
-    arr.push(current)
+    arr.unshift(current)
        rotation--
   }
   console.log(arr.join(' '));
