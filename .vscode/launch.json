@@ -1,27 +1,21 @@
 {
- 
-  "launch": {
-
-      
-
-      "configurations": [
-
-          {
-
-              "type": "node",
-
-              "request": "launch",
-
-              "name": "Launch Program",
-
-              "program": "${file}"
-
-          }
-
-      ],
-
-      "compounds": []
-
-  }
-
+    "launch": {
+        "configurations": [
+            {
+                "type": "node",
+                "request": "launch",
+                "name": "Launch Program",
+                "program": "${file}"
+            }
+        ],
+        "compounds": []
+    },
+    "workbench.editorAssociations": {
+        "*.rar": "default"
+    },
+    "workbench.editor.untitled.hint": "hidden",
+    "editor.renderWhitespace": "all",
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    }
 }
