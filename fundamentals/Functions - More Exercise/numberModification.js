@@ -1,19 +1,21 @@
-function numberModification(number) {
-    let num = number;
-    let numToString = num.toString()
-    let sum = 0;
-
-    for (let i = 1; i <= numToString.length; i++) {
-    
-        let currentNum = Number(numToString[i]);
-        sum += currentNum;
-
-        if (sum / i < 5) {
-            numToString += "9"
-        }
-
+function numberModification(modifiedNumber) {
+    while (getAvarage(modifiedNumber) < 5) {
+        modifiedNumber += "9";
     }
-    console.log(numToString)
+    console.log(modifiedNumber);
+ 
+    function getSum(number) {
+        let numToString = number.toString();
+        let sum = 0;
+        for (let i = 0; i < numToString.length; i++) {
+            sum += Number(numToString[i])
+        }
+        return sum;
+    }
+ 
+    function getAvarage(num) {
+        return getSum(num) / num.toString().length
+    }
 }
 
-numberModification(103)
+numberModification(45555)
