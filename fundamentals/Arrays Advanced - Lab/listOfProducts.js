@@ -1,4 +1,9 @@
-function listOfProducts(params) {
+function listOfProducts(input) {
+    let sortProduct = input.sort();
+    
+    for(let i = 0; i< input.length;i++){
+    console.log(`${i + 1}.${sortProduct[i]}`);
+    }
     
 }
-listOfProducts
+listOfProducts(['Potatoes', 'Tomatoes', 'Onions', 'Apples'])
