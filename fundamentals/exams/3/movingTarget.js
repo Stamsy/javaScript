@@ -1,10 +1,10 @@
 function movingTarget(input) {
     let targets = input.shift().split(' ').map(x => Number(x));
-
     let token = input.shift().split(" ");
 
-    for(let i =0; i< targets.length; i++){
-        let command = targets[i];
+    for(let i =0; i< token.length; i++){
+        let command = token[i];
+        let indexNum = token[i +1];
         let 
 
         switch(command){
