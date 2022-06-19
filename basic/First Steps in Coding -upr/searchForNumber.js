@@ -13,6 +13,7 @@ function searchForNumber(numsOne,numsTwo) {
             searchCount++
             let del = result.indexOf(searchEl)
             result.splice(del,1)
+            i--
         }
     }
     console.log(`Number ${searchEl} occurs ${searchCount} times.`);

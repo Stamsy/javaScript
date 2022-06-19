@@ -11,7 +11,6 @@ function bombNumbers(input1, input2) {
                 detonator = 0;
             }
             input1.splice(detonator, 1);
-
         }
 
     }
