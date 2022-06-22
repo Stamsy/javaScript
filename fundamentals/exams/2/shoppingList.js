@@ -3,39 +3,38 @@ function shoppingList(input) {
     let index = 0;
     let token = input[index];
     index++
-    let i;
+
     while (token !== "Go Shopping!") {
         let toDoList = token.split(" ");
-        let command = toDoList.shift();
-        let productOne = toDoList[0];
-        let productTwo = toDoList[1];
+        let command = toDoList[0];
+        let productOne = toDoList[1];
+        let i = list.indexOf(productOne)
 
         switch (command) {
             case "Urgent":
-                if (!list.includes(productOne)) {
+                if (i < 0) {
                     list.unshift(productOne)
                 }
                 break;
+
             case "Unnecessary":
                 if (list.includes(productOne)) {
-                     i = list.indexOf(productOne);
-                    list.splice(i, 1);
+                    list.splice(i, 1)
                 }
                 break;
 
             case "Correct":
+                let newItem = toDoList[2];
                 if (list.includes(productOne)) {
-                    i = list.indexOf(productOne);
-                    list.splice(i, 1, productTwo);
+                    list.splice(i, 1, newItem)
                 }
                 break;
 
             case "Rearrange":
                 if (list.includes(productOne)) {
-                    i = list.indexOf(productOne);
-                    list.push(splice(i, 1)[0]);
-                   
-                } 
+                    list.splice(i, 1)
+                    list.push(productOne)
+                }
                 break;
         }
         token = input[index];
@@ -45,10 +44,7 @@ function shoppingList(input) {
     console.log(list.join(", "));
 }
 
-shoppingList(["Milk!Pepper!Salt!Water!Banana",
-    "Urgent Salt",
-    "Unnecessary Grapes",
-    "Correct Pepper Onion",
-    "Rearrange Grapes",
-    "Correct Tomatoes Potatoes",
-    "Go Shopping!"])
+shoppingList(["Tomatoes!Potatoes!Bread",
+"Unnecessary Milk",
+"Urgent Potatoes",
+"Go Shopping!"])
