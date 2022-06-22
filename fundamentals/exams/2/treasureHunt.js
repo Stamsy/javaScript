@@ -8,6 +8,7 @@ function treasureHunt(input) {
     while (token !== "Yohoho!") {
         let command = token.split(" ");
         let operation = command.shift();
+
         switch (operation) {
             case "Loot":
                 for (let el of command) {

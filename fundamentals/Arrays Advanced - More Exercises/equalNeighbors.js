@@ -1,6 +1,6 @@
 function equalNeighbors(matrix) {
     let equalPairs = 0;
-
+ 
     for (let row = 0; row < matrix.length; row++) {
         let currentRow = matrix[row];
         let nextRow;
@@ -22,7 +22,7 @@ function equalNeighbors(matrix) {
             }
         }
     }
-
+ 
     console.log(equalPairs);
 }
 equalNeighbors([['2', '3', '4', '7', '0'],
