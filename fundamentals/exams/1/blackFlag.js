@@ -20,7 +20,7 @@ function blackFlag(input) {
     } if (totalPlunder >= expectedPlunder) {
         console.log(`Ahoy! ${totalPlunder.toFixed(2)} plunder gained.`);
     } else {
-        console.log(`Collected only ${(totalPlunder/expectedPlunder * 100).toFixed(2)}% of the plunder.`);
+        console.log(`Collected only ${((totalPlunder/expectedPlunder) * 100).toFixed(2)}% of the plunder.`);
     }
 }
 blackFlag(["10",
