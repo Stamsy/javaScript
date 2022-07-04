@@ -1,5 +1,4 @@
 
-
 class Vehicle {
     constructor(type, model, parts, fuel) {
         this.type = type;
@@ -12,8 +11,6 @@ class Vehicle {
         return this.fuel -= lostFuel;
     }
 }
-
-
 
 
 let parts = { engine: 6, power: 100 };

@@ -13,7 +13,7 @@ function inventory(arr) {
             items: items
         };
         heroes.push(currentHero)
-    }
+    } 
     let sortedByLevel = heroes.sort((a, b) => {
         return a.level - b.level;
     });
