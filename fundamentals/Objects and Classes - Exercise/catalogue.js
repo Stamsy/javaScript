@@ -1,5 +1,10 @@
 function catalogue(arr) {
-    
+    let catalogue = {}
+    for(let i = 0; i< arr.length; i+=2){
+        let product = arr[i];
+        catalogue[product] = arr[i];
+        console.log(catalogue);
+    }
 }
 catalogue([
     'Appricot : 20.4',
