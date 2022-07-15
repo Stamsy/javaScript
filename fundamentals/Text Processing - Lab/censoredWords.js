@@ -6,3 +6,13 @@ function censoredWords(text,word) {
     
 }
 censoredWords('A small sentence with some words', 'small')
+
+/*
+function censoredWords(text,word) {
+   let tokens = text.split(" ");
+   
+   console.log(tokens.join("*".repeat(word.length)))
+    
+}
+censoredWords('A small sentence with some words', 'small')
+*/
