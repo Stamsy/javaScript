@@ -11,16 +11,17 @@ function passwordReset(input) {
                     oddText.push(text[i])
                 }
             }
-            oddText = oddText.join("")
-            console.log(oddText);
+            text = oddText.join("")
+            
+            console.log(text);
         }
         if (command.includes("Cut")) {
             let tokens = command.split(" ");
             let nameCommand = tokens[0]
             let index = Number(tokens[1]);
             let length = Number(tokens[2]);
-            oddText = oddText.substring(0, index) + oddText.substring(index + length);
-            console.log(oddText);
+            text = text.substring(0, index) + text.substring(index + length);
+            console.log(text);
 
         }
         if (command.includes("Substitute")) {
@@ -28,20 +29,21 @@ function passwordReset(input) {
             let name = tokenTwo[0];
             let subst = tokenTwo[1];
             let substitute = tokenTwo[2];
-            if (!oddText.includes(subst)) {
+            if (!text.includes(subst)) {
                 console.log(`Nothing to replace!`);
                 break;
             }
-            while (oddText.includes(subst)) {
-                oddText = oddText.replace(subst, substitute);
+            while (text.includes(subst)) {
+                text = text.replace(subst, substitute);
             }
-            if (oddText.includes(substitute)) {
-                console.log(oddText);
+            if (text.includes(substitute)) {
+                console.log(text);
             }
 
         }
     }
-    console.log(`Your password is: ${oddText}`);
+   
+    console.log(`Your password is: ${text}`);
 }
 passwordReset(["up8rgoyg3r1atmlmpiunagt!-irs7!1fgulnnnqy",
 "TakeOdd",
