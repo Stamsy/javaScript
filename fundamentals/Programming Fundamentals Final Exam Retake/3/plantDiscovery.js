@@ -25,7 +25,7 @@ function plantDiscovery(input) {
             case "Rate":
 
                 if (plantsObj.hasOwnProperty(plant)) {
-                    plantsObj[plant].rating = tokens;
+                    plantsObj[plant].rating.push(tokens);
                     plantsObj[plant].counter++
                     plantsObj[plant].sum += tokens
                 } else {
@@ -55,9 +55,9 @@ function plantDiscovery(input) {
     console.log(`Plants for the exhibition:`);
     for (let key in plantsObj) {
         let average = 0;
-        if (plantsObj[key].rating.length !== 0) {
-            average = plantsObj[key].sum / plantsObj[key].counter
-        }
+        if(plantsObj[key].rating.length)
+        average = plantsObj[key]['rating'].reduce((a, b) => a + b, 0) / plantsObj[key]['rating'].length
+        
         console.log(`- ${key}; Rarity: ${plantsObj[key].rarity}; Rating: ${average.toFixed(2)}`)
     }
 }
