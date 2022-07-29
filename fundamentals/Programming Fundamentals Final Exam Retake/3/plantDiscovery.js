@@ -6,44 +6,61 @@ function plantDiscovery(input) {
         let tokens = input.shift().split("<->")
         let plant = tokens[0]
         let rarity = Number(tokens[1])
-        
+
         plantsObj[plant] = {};
         plantsObj[plant].rarity = rarity;
         plantsObj[plant].rating = [];
         plantsObj[plant].counter = 0;
+        plantsObj[plant].sum = 0;
     }
 
     while (input[0] != "Exhibition") {
         let token = input.shift().split(": ")
         let command = token[0];
         let plantInfo = token[1].split(" - ");
-        console.table(plantsObj);
+
+        let plant = plantInfo[0];
+        let tokens = Number(plantInfo[1]);
         switch (command) {
             case "Rate":
-                let plant1 = plantInfo[0];
-                let rating = Number(plantInfo[1]);
 
-                if (plantsObj.hasOwnProperty(plant1)) {
-                    plantsObj[plant1].rating = rating;
+                if (plantsObj.hasOwnProperty(plant)) {
+                    plantsObj[plant].rating = tokens;
+                    plantsObj[plant].counter++
+                    plantsObj[plant].sum += tokens
                 } else {
                     console.log(`error`);
                 }
                 break;
 
             case "Update":
-                let plant2 = plantInfo[0];
-                let newRarity = Number(plantInfo[1]);
-                if (plantsObj.hasOwnProperty(plant2)) {
-                    plantsObj[plant1].rarity = newRarity;
+                let newRarity = Number(plantInfo[1])
+                if (plantsObj.hasOwnProperty(plant)) {
+                    plantsObj[plant].rarity = newRarity;
+                } else {
+                    console.log(`error`);
                 }
                 break;
             case "Reset":
-                break;
+                if (plantsObj.hasOwnProperty(plant)) {
+                    plantsObj[plant].rating = [];
+                    plantsObj[plant].counter = 0;
+                } else {
+                    console.log(`error`);
+                    break;
+                }
         }
-    }
-    
-}
 
+    }
+    console.log(`Plants for the exhibition:`);
+    for (let key in plantsObj) {
+        let average = 0;
+        if (plantsObj[key].rating.length !== 0) {
+            average = plantsObj[key].sum / plantsObj[key].counter
+        }
+        console.log(`- ${key}; Rarity: ${plantsObj[key].rarity}; Rating: ${average.toFixed(2)}`)
+    }
+}
 /*function plantDiscovery(array) {
     let num = Number(array.shift());
     let plantsObj = {};
@@ -55,9 +72,9 @@ function plantDiscovery(input) {
         plantsObj[plant]['rating'] = [];
         plantsObj[plant]['counter'] = 0;
     }
-
+ 
     let line = array.shift();
-
+ 
     while (line !== 'Exhibition') {
         if (line.includes('Rate')) {
             let [command, plantInfo] = line.split(': ');
