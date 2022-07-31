@@ -13,7 +13,7 @@ function plantDiscovery(input) {
         plantsObj[plant].counter = 0;
         plantsObj[plant].sum = 0;
     }
-
+console.table(plantsObj);
     while (input[0] != "Exhibition") {
         let token = input.shift().split(": ")
         let command = token[0];
