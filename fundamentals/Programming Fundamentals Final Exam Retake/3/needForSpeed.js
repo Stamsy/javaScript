@@ -28,46 +28,58 @@ function needForSpeed(input) {
           else {
             carObj[car].mileage += distance;
             carObj[car].fuel -= givenFuel;
-            console.log(`${carObj[car]} driven for ${distance} kilometers. ${givenFuel} liters of fuel consumed.`);
+            console.log(`${car} driven for ${distance} kilometers. ${givenFuel} liters of fuel consumed.`);
           }
           if (carObj[car].mileage >= 100000) {
             delete carObj[car];
+            console.log(`Time to sell the ${car}!`);
           }
         }
-        
-    break;
-     case "Refuel":
-    let fuel = Number(token[2]);
-    
-   carObj[car].fuel + fuel
-   if(carObj[car].fuel > 75){
-    carObj[car].fuel = 75;
-    let currentFuel = 75 - carObj[car].fuel;
-    console.log(`${car} refueled with ${currentFuel} liters`);
-   }
 
+        break;
+      case "Refuel":
+        let fuel = Number(token[2]);
+
+        carObj[car].fuel += fuel
+        let currentFuel = carObj[car].fuel - 75;
+        if (carObj[car].fuel > 75) {
+          carObj[car].fuel = 75;
+          
+        console.log(`${car} refueled with ${currentFuel} liters`);
+        } else{
+          console.log(`${car} refueled with ${fuel} liters`);
+        }
+        break;
+
+      case "Revert":
+        let kilometers = Number(token[2]);
+        carObj[car].mileage -= kilometers;
+        if (carObj[car].mileage < 10000) {
+          carObj[car].mileage = 10000
+          break;
+        }
+        console.log(`${car} mileage decreased by ${kilometers} kilometers`);
+
+        break;
     }
 
+  }
 
-    break;
+  for (let key in carObj) {
+    console.log(`${key} -> Mileage: ${carObj[key].mileage} kms, Fuel in the tank: ${carObj[key].fuel} lt.`);
+  }
 
-  //    case "Revert":
-  //  break;
-
-  //}
-}
-console.table(carObj);
 }
 needForSpeed([
-  '3',
-  'Audi A6|38000|62',
-  'Mercedes CLS|11000|35',
-  'Volkswagen Passat CC|45678|5',
-  'Drive : Audi A6 : 543 : 47',
-  'Drive : Mercedes CLS : 94 : 11',
-  'Drive : Volkswagen Passat CC : 69 : 8',
-  'Refuel : Audi A6 : 50',
-  'Revert : Mercedes CLS : 500',
-  'Revert : Audi A6 : 30000',
+  '4',
+  'Lamborghini Veneno|11111|74',
+  'Bugatti Veyron|12345|67',
+  'Koenigsegg CCXR|67890|12',
+  'Aston Martin Valkryie|99900|50',
+  'Drive : Koenigsegg CCXR : 382 : 82',
+  'Drive : Aston Martin Valkryie : 99 : 23',
+  'Drive : Aston Martin Valkryie : 2 : 1',
+  'Refuel : Lamborghini Veneno : 40',
+  'Revert : Bugatti Veyron : 2000',
   'Stop'
 ])
