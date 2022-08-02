@@ -1,95 +1,32 @@
-function plantDiscovery(array){
-    let num = Number(array.shift());
-    let plantInfo = {};
+function fancyBarcode(data) {
+    let n = Number(data.shift())
+    let pattern = /(@#{1,})([A-Z][A-Za-z0-9]{4,}[A-Z])(@#{1,})/g
+    for (i = 0; i < n; i++) {
+        let barcode = data[i]
  
-    for (let i = 0; i < num; i++){
-        let infoPlants = array[i].split(`<->`);
-        let plant = infoPlants[0];
-        let rarity = infoPlants[1];
- 
-        if(!plantInfo.hasOwnProperty(plant)){
-            plantInfo[plant] = {};
-        }
- 
-        if(!plantInfo[plant].hasOwnProperty(rarity)){
-            plantInfo[plant]['rarity'] = rarity;
-        }
-    }
- 
-    let index = num;
- 
-    let command = array[index];
-    index++;
- 
-    while (command !== `Exhibition`){
-        let currLine = command.split(`: `)
-        let currCommnad = currLine[0];
-        let elements = currLine[1].split(` - `)
-        let currPlant = elements[0];
- 
-        if(!plantInfo.hasOwnProperty(currPlant)){
-            console.log(`error`)
-        } else {
- 
-            switch(currCommnad) {
-                case 'Rate':
-                    let currRating = Number(elements[1]);
- 
-                    if(!plantInfo[currPlant].hasOwnProperty('rating')) {
-                    plantInfo[currPlant]['rating'] = [];
-                    }
- 
-                    plantInfo[currPlant]['rating'].push(currRating)
-                    break;
- 
-                case 'Update':
-                    let newRarity = Number(elements[1]);
-                    plantInfo[currPlant]['rarity'] = newRarity;
-                    break;
- 
-                case 'Reset':
-                    plantInfo[currPlant]['rating'] = [];
-                    break;
-            }   
-        }
-        command = array[index];
-        index++;
-    }
- 
-    console.log(`Plants for the exhibition:`); 
- 
-    for (let [key, value] of Object.entries(plantInfo)){
-        let count = 0;
-        let sum = 0;
-        let avr = 0
- 
-        for (let [k, type] of Object.entries(value)){
-            if(k === 'rating'){
-                for (let i = 0; i < type.length; i++){
-                    count++;
-                    sum +=Number(type[i]);
- 
-                    if(sum === 0) {
-                        avr = 0;
-                    } else {
-                        avr = sum / count
-                    }
+        let match = pattern.exec(barcode)
+        let concanateDigit = ''
+        let isValid = false
+        while (match !== null) {
+            isValid = true
+            let barcodeText = match[2]
+            for (let ch of 
+                barcodeText) {
+                if (!isNaN(Number(ch))) {
+                    concanateDigit += ch
                 }
-            } else {
-                rarity = Number(type)
             }
+            match = pattern.exec(barcode)
         }
-        console.log(`- ${key}; Rarity: ${rarity}; Rating: ${avr.toFixed(2)}`)
+        if (isValid) {
+            concanateDigit = concanateDigit !== '' ? concanateDigit : '00'
+            console.log(`Product group: ${concanateDigit}`)
+        } else {
+            console.log("Invalid barcode")
+        }
     }
 }
-plantDiscovery((["3",
-        "Arnoldii<->4",
-        "Woodii<->7",
-        "Welwitschia<->2",
-        "Rate: Woodii - 10",
-        "Rate: Welwitschia - 7",
-        "Rate: Arnoldii - 3",
-        "Rate: Woodii - 5",
-        "Update: Woodii - 5",
-        "Reset: Arnoldii",
-        "Exhibition"]))
+fancyBarcode(["3",
+"@#FreshFisH@#",
+"@###Brea0D@###",
+"@##Che4s6E@##"])
