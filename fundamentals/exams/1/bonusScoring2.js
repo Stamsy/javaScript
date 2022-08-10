@@ -23,3 +23,20 @@ bonusScoring2([
     '17', '25', '26', '5',
     '18'
 ])
+
+/*function solve(input) {
+    let students = Number(input.shift());
+    let lectures = Number(input.shift());
+    let additionalBonus = Number(input.shift())
+
+    if (students > 0 && lectures > 0) {
+        let maxPoint = Math.max(...input);
+        let score = maxPoint / lectures * (5 + additionalBonus)
+        console.log(`Max Bonus: ${Math.ceil(score)}.`);
+        console.log(`The student has attended ${maxPoint} lectures.`);
+    } else{
+        console.log(`Max Bonus: 0.`)
+        console.log(`The student has attended 0 lectures.`);
+    }
+
+}*/
