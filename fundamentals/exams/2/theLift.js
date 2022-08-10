@@ -1,12 +1,10 @@
 function demo(input) {
-
     let passengers = Number(input.shift());
     let wagons = input.shift().split(' ').map(Number);
     let wagonsLength = wagons.length;
 
     if (passengers) {
         for (let i = 0; i < wagonsLength; i++) {
-
             let currentWagon = wagons[i];
 
             while (currentWagon !== 4) {

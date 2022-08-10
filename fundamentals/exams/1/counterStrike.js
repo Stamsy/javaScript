@@ -38,3 +38,27 @@ counterStrike(["200",
     "28",
     "13",
     "End of battle"])
+
+    /*function solve(input) {
+    let energy = Number(input.shift());
+    let won = 0;
+
+    for (let i = 0; i < input.length; i++) {
+        if (input[i] === "End of battle") {
+            console.log(`Won battles: ${won}. Energy left: ${energy}`);
+        }
+        let distance = Number(input[i])
+        if (energy < distance) {
+            
+            console.log(`Not enough energy! Game ends with ${won} won battles and ${energy} energy`);
+            break;
+        }
+        if (energy >= 0) {
+            energy -= distance
+            won++
+        }
+            if (won % 3 === 0) {
+                energy += won
+            }
+    }
+}*/

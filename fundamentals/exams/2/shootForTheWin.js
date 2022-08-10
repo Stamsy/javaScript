@@ -30,3 +30,29 @@ shootForTheWin(["24 50 36 70",
     "3",
     "1",
     "End"])
+
+    /*function solve(input) {
+    let targets = input.shift().split(" ").map(Number);
+    let counter = 0
+    while (input[0] !== "End") {
+        let shot = input.shift();
+        if (shot >= 0 && shot < targets.length) {
+            let count = targets[shot]
+            for (let i = 0; i < targets.length; i++) {
+                if (targets[i] > count) {
+                    
+                    targets[i] -= count
+                } else {
+                    if (targets[i] === -1) {
+                        continue
+                    }
+                    targets[i] += count
+                }
+            }
+            targets[shot] = -1
+            counter++
+        }
+    }
+
+    console.log(`Shot targets: ${counter} -> ${targets.join(" ")}`)
+} */

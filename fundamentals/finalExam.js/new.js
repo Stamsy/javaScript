@@ -1,61 +1,56 @@
-function wildZoo(input) {
-    let zoo = {}
+function solve(input) {
  
-   for(const line of input){
-        if(line === 'EndDay'){
-            break;
-        }
-    while (input[0] != "EndDay") {
-        let tokens = input.shift().split(":");
-        let command = tokens[0];
-        let token = tokens[1].split("-")
-        let name = token[0];
-        switch (command) {
+    let currComm = input.shift();
+    let obj = {};
+    let areaObj = {}
+    while (currComm !== "EndDay") {
+        currComm = currComm.split(": ");
+        let comm = currComm.shift();
+        let [name, food, area] = currComm.join("").split("-");
+        switch(comm) {
             case "Add":
-                let needFood = Number(token[1]);
-                let area = token[2];
-                if (!zoo[name]) {
-                    zoo[name] = { needFood, area }
+                if(obj.hasOwnProperty(name)) {
+                    obj[name].food += +food;
                 } else {
-                    zoo[name].needFood += needFood;
-                    zoo[name].area = area;
- 
+                    obj[name] = {food: +food, area: area};
+                    if(areaObj.hasOwnProperty(area)) {
+                        areaObj[area]++;
+                    } else {
+                        areaObj[area] = 1;
+                    }
                 }
                 break;
- 
- 
             case "Feed":
-                let food = Number(token[1]);
-                if (zoo.hasOwnProperty(name)) {
-                    zoo[name].needFood -= food;
-                    if (zoo[name].needFood <= 0) {
-                        delete zoo[name]
+                if(obj.hasOwnProperty(name)) {
+                    obj[name].food -= +food;
+                    if(obj[name].food <= 0) {
+                        let currArea = obj[name].area
+                        areaObj[currArea]--;
+                        if(areaObj[currArea] <= 0) {
+                            delete areaObj[currArea];
+                        }
+                        delete obj[name];
                         console.log(`${name} was successfully fed`);
                     }
                 }
                 break;
         }
+        currComm = input.shift();
     }
- 
-    console.log(`Animals:`);
-    for (let anim in zoo) {
-        console.log(`${anim} -> ${zoo[anim].needFood}g`);
- 
-    }
-    console.log(`Areas with hungry animals:`)
-    let aria;
-    let count = 0
-    for (aria in zoo) {
-        if (zoo[aria].needFood > 0) {
-            count++
-        } else {
-            break;
+    if(Object.entries(obj).length > 0) {
+        console.log("Animals:");
+        for(let [key,value] of Object.entries(obj)) {
+            console.log(`${key} -> ${value.food}g`);
         }
     }
-    console.log(`${zoo[aria].area}: ${count}`);
+    if(Object.entries(areaObj).length > 0) {
+        console.log("Areas with hungry animals:");
+    for(let [key,value] of Object.entries(areaObj)) {
+        console.log(`${key}: ${value}`);
+    }
+    }
 }
-}
-wildZoo(["Add: Adam-4500-ByTheCreek",
+solve(["Add: Adam-4500-ByTheCreek",
 "Add: Maya-7600-WaterfallArea",
 "Add: Maya-1230-WaterfallArea",
 "Feed: Jamie-2000",

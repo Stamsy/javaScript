@@ -54,3 +54,43 @@ movingTarget(["52 74 23 44 96 110",
     "Strike 2 1",
     "Add 22 3",
     "End"]);
+    /*function solve(input) {
+    let targets = input.shift().split(" ").map(Number);
+
+    while (input[0] !== "End") {
+        let [command, index, power] = input.shift().split(" ");
+        index = Number(index);
+        power = Number(power)
+        switch (command) {
+            case "Shoot":
+                if (index < targets.length) {
+                    targets[index] -= power
+                    if (targets[index] <= 0) {
+                        targets.splice(index, 1)
+                    }
+                }
+                break;
+
+            case "Add":
+                if (index >= 0 && index < targets.length) {
+                    targets.splice(index, 0, power)
+                } else {
+                    console.log(`Invalid placement!`);
+                }
+                break;
+            case "Strike":
+                let left = index - power;
+                let rigth = power*2 + 1;
+                let chek = index + power;
+                let chek2 = index - power
+                if(chek <= targets.length -1 && chek2 >= 0){
+                    targets.splice(left,rigth)
+                } else{
+                    console.log(`Strike missed!`);
+                    break;
+                }
+                break;
+        }
+    }
+    console.log(targets.join("|"));
+}*/

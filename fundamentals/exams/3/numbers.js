@@ -25,3 +25,17 @@ function numbers(input) {
     console.log(numbers.join(" "));
   }
 numbers('-1 -2 -3 -4 -5 -6')
+/*function solve(input) {
+    let num = input.split(" ").map(Number);
+    let sum = 0
+    sum = num.reduce((a,b) => a + b, 0 )
+    let avg = (sum / num.length).toFixed(2)
+
+    num = num.filter(a => a > avg ).sort((a,b)=> b - a)
+    num = num.slice(0,5)
+    if (num.length < 1) {
+        console.log("No");
+        return
+      }
+    console.log(num.join(" "));
+}*/
