@@ -51,3 +51,39 @@ function muOnline(arr) {
     }
 }
 muOnline(["cat 10|potion 30|orc 10|chest 10|snake 25|chest 110"])
+/*function solve(input) {
+    let health = 100;
+    let bitCoint = 0;
+    let rooms = input.split("|");
+    let room = 0;
+    for (let i = 0; i < rooms.length; i++) {
+        let [command, number] = rooms[i].split(" ");
+        room++
+        number = Number(number);
+        switch (command) {
+            case "potion":
+                let healed = Math.min((100 - health), number);
+                health += healed
+                console.log(`You healed for ${healed} hp.`);
+                console.log(`Current health: ${health} hp.`);
+                break;
+            case "chest":
+                bitCoint += number
+                console.log(`You found ${number} bitcoins.`);
+                break;
+            default:
+                health -= number;
+                if (health > 0) {
+                    console.log(`You slayed ${command}.`);
+                } else {
+                    console.log(`You died! Killed by ${command}.`);
+                    console.log(`Best room: ${room}`);
+                    return
+                }
+                break;
+        }
+    }
+    console.log(`You've made it!`);
+    console.log(`Bitcoins: ${bitCoint}`);
+    console.log(`Health: ${health}`);
+}*/
