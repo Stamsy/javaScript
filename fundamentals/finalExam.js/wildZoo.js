@@ -1,57 +1,65 @@
 function wildZoo(input) {
-    const list = {};
-    let count = 0;
-    for(const line of input){
-        if(line === 'EndDay'){
+    let zoo = {};
+    let areas = {};
+
+    for (let el of input) {
+        if (el === "EndDay") {
             break;
         }
- 
-        let [command, ...rest] = line.split(':');
-        rest = rest.join('-').split('-')
- 
-        switch(command){
-            case `Add`:
-                let name = rest[0];
-                let food = Number(rest[1]);
-                let area = rest[2];
-                if(!list.hasOwnProperty(name)){
-                    list[name] = {
-                        food,
-                        area,
+        let [command, rest] = el.split(": ");
+        let [animalName, food, area] = rest.split("-");
+        food = Number(food);
+        switch (command) {
+            case "Add":
+                if (!zoo.hasOwnProperty(animalName)) {
+                    zoo[animalName] = {
+                        food: 0,
+                        area
+                    };
+
+                }
+                zoo[animalName].food += food
+                if (!areas.hasOwnProperty(area)) {
+                    areas[area] = new Set();
+                }
+                areas[area].add(animalName)
+                break;
+
+            case "Feed":
+
+                if (!zoo.hasOwnProperty(animalName)) {
+                  continue
+                }
+                zoo[animalName].food -= food
+                if (zoo[animalName].food <= 0) {
+                    area = zoo[animalName].area
+                    delete zoo[animalName];
+
+                    areas[area].delete(animalName)
+                    if(areas[area].size === 0){
+                        delete areas[area]
                     }
-                    break;
+                    console.log(`${animalName} was successfully fed`);
                 }
-                list[name].food += food;
-            break;
-            case `Feed`:
-                let currentName = rest[0];
-                let currentFood = Number(rest[1]);
- 
-                if(list.hasOwnProperty(currentName)){
-                    list[currentName].food -= currentFood;
-                }else{
-                    continue;
-                }
- 
-                if(list[currentName].food <= 0){
-                    delete list[currentName];
-                    console.log(`${currentName} was successfully fed!`);
-                }else{
-                    count++;
-                }
-            break;
+                break;
         }
     }
- 
-    Object.entries(list)
-    .forEach(el => {
-        console.log(`${Object.keys(list)}`);
-        console.log(`${el[0]} -> ${list[el[0]].food}`);
+    console.log("Animals:");
+    Object.entries(zoo).forEach(([animal, obj]) => {
+        console.log(` ${animal} -> ${obj.food}g`);
     })
- 
+    console.log("Areas with hungry animals:");
+    Object.entries(areas).forEach(([area, set]) => {
+        console.log(` ${area} -> ${set.size}`);
+    })
 }
-wildZoo((["Add: Adam-4500-ByTheCreek",
-"Add: Maya-7600-WaterfallArea",
-"Add: Maya-1230-WaterfallArea",
-"Feed: Jamie-2000",
-"EndDay"]))
+    wildZoo(["Add: Bonie-3490-RiverArea",
+    "Add: Sam-5430-DeepWoodsArea",
+    "Add: Bonie-200-RiverArea",
+    "Add: Maya-4560-ByTheCreek",
+    "Feed: Maya-2390",
+    "Feed: Bonie-3500",
+    "Feed: Johny-3400",
+    "Feed: Sam-5500",
+    "EndDay"])
+    

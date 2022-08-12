@@ -1,5 +1,4 @@
 function solve(input) {
- 
     let currComm = input.shift();
     let obj = {};
     let areaObj = {}

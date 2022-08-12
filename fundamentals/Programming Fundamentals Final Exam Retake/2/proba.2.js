@@ -1,38 +1,28 @@
-function solve(input) {
-    let money = Number(input.shift());
-    let users = Number(input[0]);
-    let sum = 0;
-    let count = 0;
+function encryptingPassword(input) {
  
-    for (let i = 1; i <= users; i++) {
-        let numSearch = Number(input[i]);
-        count++;
-        if (i % 3 === 0) {
-            if (numSearch <= 1) {
-               continue;
-            } else if (numSearch > 5) {
-                sum += numSearch * money * 6;
-            } else {
-                sum += numSearch * money * 3;
-            }
-        } else if (i % 3 !== 0) {
-            if (numSearch <= 1) {
-                continue;
-            } else if (numSearch > 5) {
-                sum += numSearch * money * 2;
-            } else {
-                sum += numSearch * money;
-            }
+    let n = Number(input.shift())
+    let pattern = /(.+)(?<numbers>\d{3})\|(?<lower>[a-z]{3})\|(?<upper>[A-Z]{3})\|(?<symbols>[^<>]{3})(.+)/g
+ 
+    for (let i = 0; i < n; i++) {
+        let valid = pattern.exec(input[i])
+ 
+        if (!valid) {
+            console.log("Try another password!")
+ 
+        } else {
+            let {
+                numbers,
+                lower,
+                upper,
+                symbols
+            } = valid.groups
+            let encryptedPassword = numbers + lower + upper + symbols
+            console.log(`Password: ${encryptedPassword}`)
         }
     }
-    console.log(`Total money earned: ${sum.toFixed(2)}`);
 }
-solve(["3.0",
-"7",
-"0",
-"1",
-"2",
-"3",
-"4",
-"6",
-"15"])
+encryptingPassword(["3",
+    "##>00|no|NO|!!!?<###",
+    "##>123|yes|YES|!!!<##",
+    "$$<111|noo|NOPE|<<>$$"
+])
