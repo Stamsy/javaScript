@@ -13,7 +13,7 @@ function plantDiscovery(input) {
         plantsObj[plant].counter = 0;
         plantsObj[plant].sum = 0;
     }
-console.table(plantsObj);
+    console.table(plantsObj);
     while (input[0] != "Exhibition") {
         let token = input.shift().split(": ")
         let command = token[0];
@@ -55,9 +55,9 @@ console.table(plantsObj);
     console.log(`Plants for the exhibition:`);
     for (let key in plantsObj) {
         let average = 0;
-        if(plantsObj[key].rating.length)
-        average = plantsObj[key]['rating'].reduce((a, b) => a + b, 0) / plantsObj[key]['rating'].length
-        
+        if (plantsObj[key].rating.length)
+            average = plantsObj[key]['rating'].reduce((a, b) => a + b, 0) / plantsObj[key]['rating'].length
+
         console.log(`- ${key}; Rarity: ${plantsObj[key].rarity}; Rating: ${average.toFixed(2)}`)
     }
 }

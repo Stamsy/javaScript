@@ -15,8 +15,7 @@ function wildZoo(input) {
                     zoo[animalName] = {
                         food: 0,
                         area
-                    };
-
+                    }
                 }
                 zoo[animalName].food += food
                 if (!areas.hasOwnProperty(area)) {

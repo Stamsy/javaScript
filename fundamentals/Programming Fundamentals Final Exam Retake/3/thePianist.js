@@ -142,3 +142,56 @@ thePianist([
     console.log(`${item} -> Composer: ${list[item][0]}, Key: ${list[item][1]}`);
   }
 } */
+/*function solve(input) {
+    let num = Number(input.shift());
+    let pieces = {}
+
+    for (let i = 0; i < num; i++) {
+        let [piece, composer, key] = input.shift().split("|");
+        pieces[piece] = {
+            composer,
+            key
+        }
+    }
+        while (input[0] !== "Stop") {
+            let [command, piece, composer, key] = input.shift().split("|");
+
+            switch (command) {
+                case "Add":
+                    if (!pieces.hasOwnProperty(piece)) {
+                        pieces[piece] = {
+                            composer,
+                            key
+                        }
+                        console.log(`${piece} by ${composer} in ${key} added to the collection!`);
+                        
+                    } else {
+                        console.log(`${piece} is already in the collection!`);
+                    }
+                    break;
+
+                case "Remove":
+                    if (!pieces.hasOwnProperty(piece)) {
+                        console.log(`Invalid operation! ${piece} does not exist in the collection.`);
+                    } else {
+                        delete pieces[piece];
+                        console.log(`Successfully removed ${piece}!`);
+                    }
+
+                    break;
+                case "ChangeKey":
+                    if (!pieces.hasOwnProperty(piece)) {
+                        console.log(`Invalid operation! ${piece} does not exist in the collection.`);
+                    } else{
+                        let newKey = composer;
+                        pieces[piece].key = newKey
+                    console.log(`Changed the key of ${piece} to ${newKey}!`);
+                    }
+                    break;
+            }
+        }
+    
+     Object.entries(pieces).forEach(([piece, composer,key])=>{
+        console.log(`${piece} -> Composer: ${composer.composer}, Key: ${composer.key}`);
+     })
+}*/
