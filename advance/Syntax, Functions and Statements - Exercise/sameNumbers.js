@@ -1,14 +1,21 @@
-function solve(number) {
-    number = String(number)
-    number = number.split("")
-    for (let i = 0; i < number.length; i++) {
-        if (number[i] != number[i+1]) {
+function solve(num) {
+    num = num.toString();
+    let firstDigit = num[0];
+
+    let sum = Number(firstDigit);
+
+    for (let i = 1; i < num.length; i++) {
+        if (num[i] !== firstDigit) {
             console.log(false);
-            return
-        } else {
-            console.log(true);
+            result = num.split("")
+            .map(Number)
+            .reduce((a,b)=> a+b)
+            console.log(result);
             return
         }
+        sum += Number(num[i]);
     }
+    console.log(true);
+    console.log(sum);
 }
-solve(2232222)
+solve(1234);
