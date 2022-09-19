@@ -5,3 +5,14 @@ function solve(input) {
     }
 }
 solve(["John", "Bob", "Christina", "Ema"])
+
+/* funtion solve(arr){
+    let sorted = arr.sort((a,b) => a.localeCompare(b));
+
+    let orderNumber = 1;
+
+    sorted.forEach((name) => {
+        console.log(`${orderNumber}.${name}`);
+        orderNumber++
+    });
+}*/
