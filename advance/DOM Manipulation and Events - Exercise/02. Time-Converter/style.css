@@ -24,12 +24,12 @@ main input {
 }
 
 #daysBtn, #hoursBtn, #minutesBtn, #secondsBtn {
-    background: gray;
+    background: pink;
     width: 18%;
-    border: 2px solid gray;
+    border: 2px solid rgb(121, 191, 229);
     border-radius: 4px;
     padding: 4px 9px;
     text-transform: uppercase;
     font-weight: bold;
-    color: white;
+    color: rgb(177, 84, 158);
 }
