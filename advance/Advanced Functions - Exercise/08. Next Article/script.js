@@ -1,3 +1,12 @@
-function getArticleGenerator(articles) {
-    // TODO
+function getArticleGenerator(input) {
+    let articles = input;
+    return () => {
+        while (articles.length > 0) {
+            let container = document.getElementById('content');
+            let article = document.createElement('article');
+            let currentText = articles.shift();
+            article.innerText = currentText;
+            container.appendChild(article);
+        }
+    }
 }
