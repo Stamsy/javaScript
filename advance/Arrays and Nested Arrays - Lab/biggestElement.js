@@ -6,7 +6,7 @@ function solve(arr) {
         let num = Math.max(...numArrey)
         if (num > maxNum) {
             maxNum = num
-        } 
+        }
     }
 
     return maxNum;
